@@ -112,8 +112,17 @@ function handlePostback(req, res) {
         res.end();
     }
 
-    createBot(req.body.appUser).say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
-        .then(() => res.end());
+    // createBot(req.body.appUser).say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
+    //     .then(() => res.end());
+    
+    const stateMachine = new StateMachine({
+    script,
+    bot: createBot(req.body.appUser)
+    });
+    
+    stateMachine.receiveMessage({
+        text: postback.action.payload
+    })
 }
 
 app.post('/webhook', function(req, res, next) {

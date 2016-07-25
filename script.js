@@ -17,7 +17,7 @@ module.exports = new Script({
     
     start: {
         receive: (bot) => {
-            return bot.say('Hi! I\'m Smooch Bot! Continue? %[Yes](postback:askName) %[No](postback:bye) );
+            return bot.say('Hi! I\'m Smooch Bot! Continue? %[Yes](postback:askName) %[No](postback:bye)');
         }
     },
     bye: {

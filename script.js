@@ -8,11 +8,21 @@ module.exports = new Script({
         receive: () => 'processing'
     },
 
+    // start: {
+    //     receive: (bot) => {
+    //         return bot.say('Hi! I\'m Smooch Bot!')
+    //             .then(() => 'askName');
+    //     }
+    // },
+    
     start: {
-        receive: (bot) => {
-            return bot.say('Hi! I\'m Smooch Bot!')
-                .then(() => 'askName');
-        }
+    receive: (bot) => {
+        return bot.say('Hi! I\'m Smooch Bot! Continue? %[Yes](postback:askName) %[No](postback:bye) );
+    }
+    },
+    bye: {
+        prompt: (bot) => bot.say('Pleasure meeting you'),
+        receive: () => 'processing'
     },
 
     askName: {

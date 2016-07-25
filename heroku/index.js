@@ -120,9 +120,10 @@ function handlePostback(req, res) {
     bot: createBot(req.body.appUser)
     });
     
-    stateMachine.receiveMessage({
-        text: postback.action.payload
-    })
+    // stateMachine.receiveMessage({
+    //     text: postback.action.payload
+    // })
+    stateMachine.setState(postback.action.payload)
 }
 
 app.post('/webhook', function(req, res, next) {

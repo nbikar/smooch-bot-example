@@ -112,27 +112,27 @@ function handlePostback(req, res) {
         res.end();
     }
 
-    // createBot(req.body.appUser).say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
-    //     .then(() => res.end());
+    createBot(req.body.appUser).say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
+        .then(() => res.end());
     
-    const stateMachine = new StateMachine({
-        script,
-        bot: createBot(req.body.appUser)
-    });
+    // const stateMachine = new StateMachine({
+    //     script,
+    //     bot: createBot(req.body.appUser)
+    // });
     
-    // stateMachine.receiveMessage({
-    //     text: postback.action.payload
-    // })
-    // stateMachine.setState(postback.action.payload)
-    console.log(stateMachine.getState());
+    // // stateMachine.receiveMessage({
+    // //     text: postback.action.payload
+    // // })
+    // // stateMachine.setState(postback.action.payload)
+    // console.log(stateMachine.getState());
     
-    stateMachine.prompt(postback.action.payload)
-        .then(() => res.end())
-            .catch((err) => {
-                console.error('SmoochBot error:', err);
-                console.error(err.stack);
-                res.end();
-            });
+    // stateMachine.prompt(postback.action.payload)
+    //     .then(() => res.end())
+    //         .catch((err) => {
+    //             console.error('SmoochBot error:', err);
+    //             console.error(err.stack);
+    //             res.end();
+    //         });
 }
 
 app.post('/webhook', function(req, res, next) {

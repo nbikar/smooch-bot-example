@@ -96,7 +96,7 @@ function handleMessages(req, res) {
         script,
         bot: createBot(req.body.appUser)
     });
-
+   console.log(stateMachine.getState());
     stateMachine.receiveMessage(messages[0])
         .then(() => res.end())
         .catch((err) => {
@@ -124,6 +124,8 @@ function handlePostback(req, res) {
     //     text: postback.action.payload
     // })
     // stateMachine.setState(postback.action.payload)
+    console.log(stateMachine.getState());
+    
     stateMachine.prompt(postback.action.payload)
         .then(() => res.end())
             .catch((err) => {

@@ -21,12 +21,12 @@ module.exports = new Script({
         }
     },
     bye: {
-        prompt: (bot) => bot.say('Pleasure meeting you'),
+        prompt: (bot) => bot.say('Postback is working'),
         receive: () => 'processing'
     },
 
     askName: {
-        prompt: (bot) => bot.say('What\'s your name?'),
+        prompt: (bot) => bot.say('Postback is working. What\'s your name?'),
         receive: (bot, message) => {
             const name = message.text;
             return bot.setProp('name', name)

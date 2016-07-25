@@ -123,7 +123,8 @@ function handlePostback(req, res) {
     // stateMachine.receiveMessage({
     //     text: postback.action.payload
     // })
-    stateMachine.setState(postback.action.payload)
+    // stateMachine.setState(postback.action.payload)
+    stateMachine.prompt(postback.action.payload)
 }
 
 app.post('/webhook', function(req, res, next) {

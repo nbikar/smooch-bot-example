@@ -1,3 +1,9 @@
+#Attempt to make postback dependent state transistions
+
+stateMachine.prompt(postback.action.payload) leads to state transitions; but the bot get's reset to start and prompt keeps repeating.
+
+stateMachine.setState(postback.action.payload) leads to errors. No state transition.
+
 # SmoochBot Examples
 
 A set of example chat bots built on [smooch/smooch-bot](https://github.com/smooch/smooch-bot).

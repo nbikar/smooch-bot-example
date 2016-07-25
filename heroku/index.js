@@ -123,8 +123,8 @@ function handlePostback(req, res) {
     // stateMachine.receiveMessage({
     //     text: postback.action.payload
     // })
-    stateMachine.setState(postback.action.payload)
-    // stateMachine.prompt(postback.action.payload)
+    // stateMachine.setState(postback.action.payload)
+    stateMachine.prompt(postback.action.payload)
         .then(() => res.end())
             .catch((err) => {
                 console.error('SmoochBot error:', err);

@@ -116,15 +116,22 @@ function handlePostback(req, res) {
     //     .then(() => res.end());
     
     const stateMachine = new StateMachine({
-    script,
-    bot: createBot(req.body.appUser)
+        script,
+        bot: createBot(req.body.appUser)
     });
     
     // stateMachine.receiveMessage({
     //     text: postback.action.payload
     // })
     // stateMachine.setState(postback.action.payload.toString())
+    
     stateMachine.prompt(postback.action.payload)
+        .then(() => res.end())
+            .catch((err) => {
+                console.error('SmoochBot error:', err);
+                console.error(err.stack);
+                res.end();
+            });
 }
 
 app.post('/webhook', function(req, res, next) {

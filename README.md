@@ -1,6 +1,6 @@
 #Attempt to make postback dependent state transistions
 
-stateMachine.prompt(postback.action.payload) leads to state transitions; but the bot get's reset to start and prompt keeps repeating.
+stateMachine.prompt(postback.action.payload) leads to state transitions; but the bot gets reset to 'start' and prompt keeps repeating.
 
 stateMachine.setState(postback.action.payload) leads to errors. No state transition.
 

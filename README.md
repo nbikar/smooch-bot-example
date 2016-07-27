@@ -1,8 +1,20 @@
 #Attempt to make postback dependent state transistions
 
+#Update: 
+
+This example is working now. Correct answer credit to @dstoiko [StackOverflow](http://stackoverflow.com/questions/38558945/smooch-how-to-do-postback-dependent-state-transition/38608198#38608198) 
+
+This example now does postback payload dependent state transition. 
+
+For example, for the postback %[Yes](postback:askName) , the bot will transition to the state askName.
+
+#History 
+
+Error message on older attempts
+
 stateMachine.prompt(postback.action.payload) leads to state transitions; but the bot gets reset to 'start' and prompt keeps repeating.
 
-stateMachine.setState(postback.action.payload) leads to errors. No state transition.
+stateMachine.setState(postback.action.payload) leads to error [object Object]. No state transition.
 
 # SmoochBot Examples
 

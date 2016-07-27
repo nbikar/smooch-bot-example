@@ -121,7 +121,8 @@ function handlePostback(req, res) {
     
     // Change conversation state according to postback clicked
     switch (smoochPayload) {
-        case "POSTBACK-PAYLOAD":
+        case "bye":
+        case "askName":
             Promise.all([
                 stateMachine.bot.releaseLock(),
                 stateMachine.setState(smoochPayload), // set new state

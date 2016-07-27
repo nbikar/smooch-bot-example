@@ -107,32 +107,33 @@ function handleMessages(req, res) {
 }
 
 function handlePostback(req, res) {
-    const postback = req.body.postbacks[0];
-    if (!postback || !postback.action) {
-        res.end();
-    }
-
-    // createBot(req.body.appUser).say(`You said: ${postback.action.text} (payload was: ${postback.action.payload})`)
-    //     .then(() => res.end());
-    
     const stateMachine = new StateMachine({
         script,
         bot: createBot(req.body.appUser)
     });
     
-    // stateMachine.receiveMessage({
-    //     text: postback.action.payload
-    // })
-    // stateMachine.setState(postback.action.payload)
-    console.log(stateMachine.getState());
+    const postback = req.body.postbacks[0];
+    if (!postback || !postback.action) {
+        res.end();
+    };
     
-    stateMachine.prompt(postback.action.payload)
-        .then(() => res.end())
-            .catch((err) => {
-                console.error('SmoochBot error:', err);
-                console.error(err.stack);
-                res.end();
-            });
+    const smoochPayload = postback.action.payload;
+    
+    // Change conversation state according to postback clicked
+    switch (smoochPayload) {
+        case "POSTBACK-PAYLOAD":
+            Promise.all([
+                stateMachine.bot.releaseLock(),
+                stateMachine.setState(smoochPayload), // set new state
+                stateMachine.prompt(smoochPayload) // call state prompt() if any
+            ]);
+            res.end();
+        break;
+    
+        default:
+            stateMachine.bot.say("POSTBACK ISN'T RECOGNIZED") // for testing purposes
+                .then(() => res.end());
+    };
 }
 
 app.post('/webhook', function(req, res, next) {
